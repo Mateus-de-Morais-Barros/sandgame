@@ -10,12 +10,12 @@ const config = new Config()
 const logic = new Logic()
 const render = new Render()
 
-canvas.height = 200
-canvas.width = 200
+canvas.height = config.height
+canvas.width = config.width
 canvas.style.background = 'Black'
 
-config.height = canvas.height
-config.width = canvas.width
+config.particleSize = config.height/config.cols 
+
 
 let grid = logic.make2DArray(config.cols, config.rows);
 console.log(grid)
@@ -36,10 +36,10 @@ console.log('Begin game Loop')
 // adiciona uma particula
 window.addEventListener('click', (mouse) => {
 
-    let mouseX = mouse.clientX - (window.innerWidth/2)+(canvas.width/2)
-    let mouseY = mouse.clientY - (window.innerHeight/2)+(canvas.height/2)
-    let roundedMouseX = Math.ceil(mouseX/1) - 1
-    let roundedMouseY = Math.ceil(mouseY/1) - 1
+    let mouseX = mouse.clientX - (window.innerWidth/2)+(config.width/2)
+    let mouseY = mouse.clientY - (window.innerHeight/2)+(config.height/2)
+    let roundedMouseX = Math.ceil(mouseX/config.particleSize) - 1
+    let roundedMouseY = Math.ceil(mouseY/config.particleSize) - 1
     console.log("Position clicked: " + mouseX, mouseY)
     console.log("Position Rounded: " + roundedMouseX, roundedMouseY)
     grid[roundedMouseX][roundedMouseY] = new Sand(roundedMouseX, roundedMouseY);

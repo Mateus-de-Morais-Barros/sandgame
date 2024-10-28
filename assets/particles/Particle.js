@@ -6,7 +6,7 @@ export class Particle {
         this.color = color
         this.positionX = positionX
         this.positionY = positionY
-        this.size = 1
+        this.state
     }
     
 }

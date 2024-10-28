@@ -5,15 +5,15 @@ export class Logic {
 
 
     make2DArray(cols, rows) {
-        let arr = new Array(cols);
-        for (let i = 0; i < arr.length; i++) {
-            arr[i] = new Array(rows);
-            for (let j = 0; j < arr.length; j++) {
-                arr[i][j] = new Air(i,j);
+        let grid = new Array(cols);
+        for (let i = 0; i < grid.length; i++) {
+            grid[i] = new Array(rows);
+            for (let j = 0; j < grid.length; j++) {
+                grid[i][j] = new Air(i, j);
             }
         }
     
-        return arr;
+        return grid;
     }
 
 
@@ -24,17 +24,7 @@ export class Logic {
 
         //First grid
         if(!grid) {
-            let grid = this.make2DArray(cols, rows)
-            for (let i = 0; i < cols; i++) {
-                for (let j = 0; j < rows; j++){
-                    if (i===j) {
-                        grid[i][j] = new Sand(i, j);
-                    } else {
-                        grid[i][j] = new Air(i, j);
-                    }
-                }
-            }
-            return grid
+            return this.make2DArray(cols, rows)
         } 
     
         //Grid logic
@@ -43,15 +33,15 @@ export class Logic {
             for (let j = 0; j < rows; j++){
                 
                 let currentParticle = grid[i][j]
-                if (currentParticle.name !== "Air") {
+                if ((currentParticle instanceof Air) !== false) {
                     let below = grid[i][j+1]
                     
                     
-                    if (below.name == "Air" && j+1 < rows) {
+                    if (below instanceof Air && j+1 < rows) {
                         nextGrid[i][j+1] = new Sand()
-                    } else if (below.name !== "Air" && grid[i-1][j+1].name == "Air") {//bottom left
+                    } else if ((below instanceof Air) !== false && grid[i-1][j+1] instanceof Air) {//bottom left
                         nextGrid[i-1][j+1] = new Sand()
-                    } else if (below.name !== "Air" && grid[i+1][j+1].name == "Air") {//bottom right
+                    } else if ((below instanceof Air) !== false && grid[i+1][j+1] instanceof Air) {//bottom right
                         nextGrid[i+1][j+1] = new Sand()
                     } else {
                         nextGrid[i][j] = new Sand()
@@ -60,8 +50,7 @@ export class Logic {
             }
         }
     
-        grid = nextGrid
-        return grid
+        return nextGrid
     }
 
 
@@ -74,7 +63,6 @@ class Particle {
         this.color = color
         this.positionX = positionX
         this.positionY = positionY
-        this.size = 1
     }
     
 }
