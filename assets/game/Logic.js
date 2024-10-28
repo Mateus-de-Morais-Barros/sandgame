@@ -1,5 +1,5 @@
-// import { Sand } from "../particles/Sand";
-// import { Air } from "../particles/Air";
+import { Sand } from "../particles/Sand.js";
+import { Air } from "../particles/Air.js";
 
 export class Logic {
 
@@ -46,7 +46,7 @@ export class Logic {
 
                     if (below instanceof Air && j+1 < rows) {
                         nextGrid[i][j+1] = new Sand()
-                    } else if (bottomLeft instanceof Air && i-1 > 0) {//bottom left
+                    } else if (bottomLeft instanceof Air && i-1 > -1) {//bottom left
                         nextGrid[i-1][j+1] = new Sand()
                     } else if (bottomRight instanceof Air && i+1 < cols) {//bottom right
                         nextGrid[i+1][j+1] = new Sand()
@@ -60,32 +60,5 @@ export class Logic {
         return nextGrid
     }
 
-
-}
-
-class Particle {
-
-    constructor(name, color, positionX, positionY){
-        this.name = name
-        this.color = color
-        this.positionX = positionX
-        this.positionY = positionY
-    }
-    
-}
-
-class Air extends Particle {
-
-    constructor(positionX, positionY){
-        super("Air", "black", positionX, positionY)
-    }
-
-}
-
-class Sand extends Particle {
-
-    constructor(positionX, positionY){
-        super("Sand", "wheat", positionX, positionY)
-    }
 
 }

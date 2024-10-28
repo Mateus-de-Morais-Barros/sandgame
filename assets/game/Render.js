@@ -20,7 +20,7 @@ export class Render {
                 let x = i * config.particleSize
                 let y = j * config.particleSize
     
-                c.strokeStyle = 'gray'
+                c.strokeStyle = 'black'
                 c.strokeRect(x, y, cols*2, rows*2)
                 
                 c.fillStyle =  currentParticle.color
