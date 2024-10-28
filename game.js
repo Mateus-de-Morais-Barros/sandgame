@@ -34,7 +34,7 @@ console.log('Begin game Loop')
 
 
 // adiciona uma particula
-window.addEventListener('click', (mouse) => {
+window.addEventListener('mousemove', (mouse) => {
 
     let mouseX = mouse.clientX - (window.innerWidth/2)+(config.width/2)
     let mouseY = mouse.clientY - (window.innerHeight/2)+(config.height/2)

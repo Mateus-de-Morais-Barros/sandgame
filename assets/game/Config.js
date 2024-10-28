@@ -5,7 +5,7 @@ export class Config {
     width = 200
     cols = 10;
     rows = 10;
-    GAME_SPEED = 10
+    GAME_SPEED = 30
     GRAVITY = 1
 
 

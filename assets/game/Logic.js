@@ -33,15 +33,22 @@ export class Logic {
             for (let j = 0; j < rows; j++){
                 
                 let currentParticle = grid[i][j]
-                if ((currentParticle instanceof Air) !== false) {
+                if ((currentParticle instanceof Air) == false) {
                     let below = grid[i][j+1]
-                    
-                    
+                    let bottomLeft, bottomRight
+
+                    if (i > 0 && i < cols - 1) {
+                        bottomLeft = grid[i-1][j+1]
+                        bottomRight = grid[i+1][j+1]
+                        
+                        
+                    }
+
                     if (below instanceof Air && j+1 < rows) {
                         nextGrid[i][j+1] = new Sand()
-                    } else if ((below instanceof Air) !== false && grid[i-1][j+1] instanceof Air) {//bottom left
+                    } else if (bottomLeft instanceof Air && i-1 > 0) {//bottom left
                         nextGrid[i-1][j+1] = new Sand()
-                    } else if ((below instanceof Air) !== false && grid[i+1][j+1] instanceof Air) {//bottom right
+                    } else if (bottomRight instanceof Air && i+1 < cols) {//bottom right
                         nextGrid[i+1][j+1] = new Sand()
                     } else {
                         nextGrid[i][j] = new Sand()
